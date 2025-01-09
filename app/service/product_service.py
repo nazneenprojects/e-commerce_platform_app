@@ -1,16 +1,30 @@
 """
 product_service.py contains any of the crud operation implementation
 """
+from typing import List
+
 from sqlalchemy.orm import Session
-from app.models import product
+
 from app.models.product import Product
+from app.schemas.product import ProductCreate
 
-def get_all_products(db_session: Session):
-    return db_session.query(product).all()
 
-def create_product(db_session: Session):
-    db_product = Product(**product.dict())
-    db_session.add(db_product)
-    db_session.commit()
-    db_session.refresh(db_product)
-    return db_product
+class ProductService:
+
+    @staticmethod
+    def get_products(db: Session, skip: int = 0, limit: int = 100) -> List[Product]:
+        return db.query(Product).offset(skip).limit(limit).all()
+
+
+    @staticmethod
+    def create_product(db: Session, product_data: ProductCreate) -> Product:
+        db_product = Product(
+            name=product_data.name,
+            description=product_data.description,
+            price=product_data.price,
+            stock=product_data.stock
+        )
+        db.add(db_product)
+        db.commit()
+        db.refresh(db_product)
+        return db_product
