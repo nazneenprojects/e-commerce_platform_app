@@ -1,7 +1,7 @@
 # E-Commerce Platform API
 
 A production-grade RESTful API for an e-commerce platform built with FastAPI, PostgreSQL, and Docker.
-
+Live Render hosting URL - https://e-commerce-platform-app-latest.onrender.com/docs
 ![api.png](api.png)
 
 ## Features
@@ -165,7 +165,7 @@ Render is a cloud platform designed for deploying and hosting applications and s
 process of building, deploying, and managing apps by abstracting much of the infrastructure management, 
 allowing developers to focus on their application code.
 
-this backend service is hosted on render -  
+this backend service is hosted on render -   https://e-commerce-platform-app-latest.onrender.com/docs
 
 ## Future Scope
 - Authentication using OAuth
