@@ -1,12 +1,24 @@
 import logging
 import structlog
-from typing import Any, Dict
+
 
 def setup_logging():
-    logging.basicConfig(
-        format="%(message)s",
-        level=logging.INFO,
-    )
+    logger = logging.getLogger()
+    logger.setLevel(logging.DEBUG)
+
+    # Create console handler for INFO and above
+    info_handler = logging.StreamHandler()
+    info_handler.setLevel(logging.INFO)
+    info_formatter = logging.Formatter('%(message)s')
+    info_handler.setFormatter(info_formatter)
+    logger.addHandler(info_handler)
+
+    # Create console handler for ERROR and above
+    error_handler = logging.StreamHandler()
+    error_handler.setLevel(logging.ERROR)
+    error_formatter = logging.Formatter('%(message)s')
+    error_handler.setFormatter(error_formatter)
+    logger.addHandler(error_handler)
 
     structlog.configure(
         processors=[

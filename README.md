@@ -1,35 +1,23 @@
-# e-commerce_platform_app
-e-commerce_platform_app  with Tech Stack  Python3, FastAPI, PostgresSQL Docker, Unit testing, Render
-
-
-## How to ?
-1. To Run the project "poetry run uvicorn app.main:app --reload"
-2. To install the poetry project : "poetry init"
-3. To add the dependencies : "example, poetry add fastapi uvicorn"
-4. To remove the poetry 
-    "rm pyproject.toml poetry.lock"
-    "poetry env remove python"
-5. Alembic Set up:
-    a. poetry add alembic
-    b. alembic init alembic
-    c. update files : env.py and alembic.ini
-    d. before running app , generate migration script : alembic revision --autogenerate -m "Initial migration"
-    e. apply migration:  alembic upgrade head
-
-
 # E-Commerce Platform API
 
 A production-grade RESTful API for an e-commerce platform built with FastAPI, PostgreSQL, and Docker.
+
+![api.png](api.png)
 
 ## Features
 
 - Product management (create, list)
 - Order processing with stock validation
 - Comprehensive error handling
+- Cloud based Postgres Database hosting over Render (https://render.com/)
 - Database migrations with Alembic
 - Structured logging
 - Unit and integration tests
 - Docker support
+- Live Render Hosting (available live for limited period)
+- API Specification and Schema :
+Swagger http://127.0.0.1:8000/docs#/
+Redoc http://127.0.0.1:8000/redoc
 
 ## Tech Stack
 
@@ -41,6 +29,45 @@ A production-grade RESTful API for an e-commerce platform built with FastAPI, Po
 - Poetry
 - Docker
 - pytest
+
+## Approach :
+# E-commerce Platform API
+
+This FastAPI-based e-commerce platform demonstrates production-grade practices through a thoughtfully designed order 
+management system. The application uses a junction table (OrderItem) approach for handling order-product relationships, 
+enabling efficient tracking of pricing, maintaining order integrity, and supporting complex queries. 
+The data model leverages SQLAlchemy with PostgreSQL, implementing proper foreign key constraints and relationships 
+between Products, Orders, and OrderItems tables.
+
+The application architecture follows best practices with clear separation of concerns: models for database schema, 
+Pydantic schemas for validation, services for business logic, and controllers for API endpoints. 
+Error handling is implemented through custom exception classes and proper HTTP status codes. 
+The codebase is production-ready with features like input validation, stock management, transactional integrity, and 
+comprehensive logging. The application is containerized using Docker for consistent deployment, with separate 
+configurations for development and production environments.
+
+The system includes thorough testing coverage with unit tests for business logic and integration tests for API endpoints
+using pytest. Database migrations are handled through Alembic, ensuring smooth schema updates. The application is 
+configured for deployment on Render with PostgreSQL database integration, demonstrating real-world deployment practices. 
+Documentation is automatically generated through FastAPI's built-in Swagger UI, making API exploration 
+and testing straightforward.
+
+
+### Database Design with Junction Table:
+Main tables: Products, Orders, OrderItems (junction table)
+Benefits of junction table (OrderItems) approach:
+
+Maintains historical pricing with price_at_time
+Enables many-to-many relationship between Orders and Products
+Stores quantity and subtotal per item
+Preserves order data even if products change/delete
+Easier reporting and analytics
+
+### Modular structure:
+Models (SQLAlchemy)
+Schemas (Pydantic)
+Services (Business logic)
+Routes (API endpoints)
 
 ## Local Development Setup
 
@@ -91,11 +118,9 @@ docker build -t e-commerce-platform-app .
 ```
 
 2. Run the container:
-```bash
-docker run -p 8000:8000 \
-  -e DATABASE_URL=postgresql://user:password@host:5432/ecommerce_db \
-  ecommerce-api
-```
+ docker run -d -p 8080:8000 -e DATABASE_URL=postgresql://********************-a.frankfurt-postgres.render.com/ecomdb_0l2p 
+ --name e-commerce-app-container e-commerce-platform-app:latest
+
 
 ## API Documentation
 
@@ -117,13 +142,12 @@ Once running, visit:
 The API includes comprehensive error handling for:
 - Insufficient stock
 - Product not found
-- Invalid order data
+- Invalid order creation
 - Database errors
 
 ## Logging
 
 Structured logging is implemented using `structlog`. Logs include:
-- Request/response details
 - Error information
 - Business operations
 
@@ -135,4 +159,20 @@ Structured logging is implemented using `structlog`. Logs include:
 4. Push to the branch
 5. Create a Pull Request
 
+## Render Deployment
+This backend service is available via Render platform where docker container is running from docker registry
+Render is a cloud platform designed for deploying and hosting applications and services. It simplifies the 
+process of building, deploying, and managing apps by abstracting much of the infrastructure management, 
+allowing developers to focus on their application code.
+
+this backend service is hosted on render -  
+
+## Future Scope
+- Authentication using OAuth
+- CI/CD deployment
+- scaling using K8s
+- performance monitoring using Grafana or Datadog or Dynatrace
+- Rate limiting
+- UUID support
+- https security
 
