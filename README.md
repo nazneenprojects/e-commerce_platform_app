@@ -46,7 +46,7 @@ The codebase is production-ready with features like input validation, stock mana
 comprehensive logging. The application is containerized using Docker for consistent deployment, with separate 
 configurations for development and production environments.
 
-The system includes thorough testing coverage with unit tests for business logic and integration tests for API endpoints
+The system includes unit tests for business logic and integration tests for API endpoints
 using pytest. Database migrations are handled through Alembic, ensuring smooth schema updates. The application is 
 configured for deployment on Render with PostgreSQL database integration, demonstrating real-world deployment practices. 
 Documentation is automatically generated through FastAPI's built-in Swagger UI, making API exploration 
@@ -175,4 +175,5 @@ this backend service is hosted on render -   https://e-commerce-platform-app-lat
 - Rate limiting
 - UUID support
 - https security
+- api versioning
 
