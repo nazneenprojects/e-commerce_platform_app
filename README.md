@@ -15,7 +15,7 @@ Live Render hosting URL - https://e-commerce-platform-app-latest.onrender.com/do
 - Unit and integration tests
 - Docker support
 - Live Render Hosting (available live for limited period)
-- API Specification and Schema :
+- API Specification and Schema (localhost url) :
 Swagger http://127.0.0.1:8000/docs#/
 Redoc http://127.0.0.1:8000/redoc
 
