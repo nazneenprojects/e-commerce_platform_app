@@ -55,13 +55,13 @@ and testing straightforward.
 
 ### Database Design with Junction Table:
 Main tables: Products, Orders, OrderItems (junction table)
-Benefits of junction table (OrderItems) approach:
 
-Maintains historical pricing with price_at_time
-Enables many-to-many relationship between Orders and Products
-Stores quantity and subtotal per item
-Preserves order data even if products change/delete
-Easier reporting and analytics
+Benefits of junction table (OrderItems) approach:
+- Maintains historical pricing with price_at_time
+- Enables many-to-many relationship between Orders and Products
+- Stores quantity and subtotal per item
+- Preserves order data even if products change/delete
+- Easier reporting and analytics
 
 ### Modular structure:
 Models (SQLAlchemy)
