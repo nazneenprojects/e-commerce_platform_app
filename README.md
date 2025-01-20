@@ -31,7 +31,7 @@ Redoc http://127.0.0.1:8000/redoc
 - pytest
 
 ## Approach :
-# E-commerce Platform API
+### E-commerce Platform API
 
 This FastAPI-based e-commerce platform demonstrates production-grade practices through a thoughtfully designed order 
 management system. The application uses a junction table (OrderItem) approach for handling order-product relationships, 
